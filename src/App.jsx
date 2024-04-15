@@ -6,10 +6,23 @@ import CoreConcept from './components/CoreConcept/CoreConcept.jsx';
 import TabButton from './components/TabButton/TabButton.jsx';
 
 function App() {
-    const [selectedTopic, setSelectedTopic] = useState('components');
+    const [selectedTopic, setSelectedTopic] = useState();
 
     function handleClick(clickedBtn) {
         setSelectedTopic(clickedBtn);
+    }
+
+    let tabContent = <p>Please select a topic.</p>;
+    if (selectedTopic) {
+        tabContent = (
+            <div id="tab-content">
+                <h3>{EXAMPLES[selectedTopic].title}</h3>
+                <p>{EXAMPLES[selectedTopic].description}</p>
+                <pre>
+                    <code>{EXAMPLES[selectedTopic].code}</code>
+                </pre>
+            </div>
+        );
     }
 
     return (
@@ -44,10 +57,10 @@ function App() {
                         /> */}
 
                         {/* Example #2 */}
-                        <CoreConcept {...CORE_CONCEPTS[0]}/>
-                        <CoreConcept {...CORE_CONCEPTS[1]}/>
-                        <CoreConcept {...CORE_CONCEPTS[2]}/>
-                        <CoreConcept {...CORE_CONCEPTS[3]}/>
+                        <CoreConcept {...CORE_CONCEPTS[0]} />
+                        <CoreConcept {...CORE_CONCEPTS[1]} />
+                        <CoreConcept {...CORE_CONCEPTS[2]} />
+                        <CoreConcept {...CORE_CONCEPTS[3]} />
                     </ul>
                 </section>
 
@@ -55,19 +68,45 @@ function App() {
                     <h2>Examples</h2>
 
                     <menu>
-                        <TabButton onClick={() => handleClick('components')}>Components</TabButton>
-                        <TabButton onClick={() => handleClick('jsx')}>JSX</TabButton>
-                        <TabButton onClick={() => handleClick('props')}>Props</TabButton>
-                        <TabButton onClick={() => handleClick('state')}>State</TabButton>
+                        <TabButton
+                            isSelected={selectedTopic === 'components'}
+                            onClick={() => handleClick('components')}
+                        >
+                            Components
+                        </TabButton>
+                        <TabButton
+                            isSelected={selectedTopic === 'jsx'}
+                            onClick={() => handleClick('jsx')}
+                        >
+                            JSX
+                        </TabButton>
+                        <TabButton
+                            isSelected={selectedTopic === 'props'}
+                            onClick={() => handleClick('props')}
+                        >
+                            Props
+                        </TabButton>
+                        <TabButton
+                            isSelected={selectedTopic === 'state'}
+                            onClick={() => handleClick('state')}
+                        >
+                            State
+                        </TabButton>
                     </menu>
+                    
+                    {/* Example #1 */}
+                    {/* {!selectedTopic ? <p>Please select a topic.</p> : (
+                        <div id="tab-content">
+                            <h3>{EXAMPLES[selectedTopic].title}</h3>
+                            <p>{EXAMPLES[selectedTopic].description}</p>
+                            <pre>
+                                <code>{EXAMPLES[selectedTopic].code}</code>
+                            </pre>
+                        </div>
+                    )} */}
 
-                    <div id="tab-content">
-                        <h3>{EXAMPLES[selectedTopic].title}</h3>
-                        <p>{EXAMPLES[selectedTopic].description}</p>
-                        <pre>
-                            <code>{EXAMPLES[selectedTopic].code}</code>
-                        </pre>
-                    </div>
+                    {/* Example #2 */}
+                    {tabContent}
                 </section>
             </main>
         </div>
