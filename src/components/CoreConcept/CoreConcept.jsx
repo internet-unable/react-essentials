@@ -1,3 +1,5 @@
+import './CoreConcept.css';
+
 // Example #1
 // export default function CoreConcept(props) {
 //     return (

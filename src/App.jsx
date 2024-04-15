@@ -1,6 +1,6 @@
 import { CORE_CONCEPTS } from './data.js';
-import Header from './components/Header.jsx';
-import CoreConcept from './components/CoreConcept.jsx';
+import Header from './components/Header/Header.jsx';
+import CoreConcept from './components/CoreConcept/CoreConcept.jsx';
 
 function App() {
     return (
@@ -10,6 +10,7 @@ function App() {
             <main>
                 <section id="core-concepts">
                     <h2>Core Concepts</h2>
+                    
                     <ul>
                         {/* Example #1 */}
                         {/* <CoreConcept
